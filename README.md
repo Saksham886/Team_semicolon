@@ -41,6 +41,7 @@ This project uses *FastAPI* to deploy a voice emotion detection model. The model
 
 ###1. *Clone the Repository*
 https://github.com/Saksham886/Team_semicolon/tree/main/Model_API
+
 ### 2. *Create a Virtual Environment*
 bash
 python -m venv venv
@@ -104,5 +105,83 @@ json
 - *Librosa Load Error:*
   - Verify audio file format and sampling rate.
 
+# Emotion Detector API (Colon)
+
+## Overview
+The *Colon Emotion Detector API* is a FastAPI-based service that processes .wav audio files and returns an emotion prediction. It accepts *POST requests* with multipart/form-data.
+
+## API Endpoint
+
+POST https://colonemotion-production.up.railway.app/predict
+
+
+## Request Format
+- *Method*: POST
+- *Content-Type*: multipart/form-data
+- *Parameter*: file (The .wav file to be uploaded)
+
+## Example Request (cURL)
+sh
+curl -X POST "https://colonemotion-production.up.railway.app/predict" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@path/to/audio.wav"
+
+
+## Example Request (Dart/Flutter using http package)
+dart
+import 'dart:io';
+import 'package:http/http.dart' as http;
+
+Future<void> sendAudioToAPI(File audioFile) async {
+  var request = http.MultipartRequest(
+    'POST',
+    Uri.parse('https://colonemotion-production.up.railway.app/predict'),
+  );
+
+  request.files.add(
+    await http.MultipartFile.fromPath(
+      'file', // This should match the FastAPI parameter name
+      audioFile.path,
+    ),
+  );
+
+  try {
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      var responseData = await response.stream.bytesToString();
+      print("Predicted Emotion: $responseData");
+    } else {
+      print("Error: ${response.statusCode}");
+    }
+  } catch (e) {
+    print("Exception: $e");
+  }
+}
+
+
+## Example Response
+json
+{
+  "mood": "happy"
+}
+
+
+## Error Handling
+- 400 Bad Request: If no file is uploaded.
+- 415 Unsupported Media Type: If the uploaded file is not in .wav format.
+- 500 Internal Server Error: If an unexpected error occurs.
+
+## Notes
+- Ensure the uploaded file is in **.wav format**.
+- The API processes audio and returns the detected emotion in JSON format.
+- Use the **correct form-data key (file)** when sending the request.
+
+## Contributors
+Developed by the *SemiColon Team*.
+
+Warning ⚠
+
+This APIs and Model are hosted on a free platform, so there may be occasional downtime or slow responses. If you experience issues, please try again later.
+
 ## 📞 *Contact*
-For any questions, feel free to reach out at *your.email@example.com*.
+For any questions, feel free to reach out at *utkarshgsuv@gmail.com*.
