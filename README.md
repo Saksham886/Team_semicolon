@@ -32,9 +32,10 @@ Melo is open-source. Feel free to use and modify it as needed.
 Built with ❤ to support mental well-being.
 
 
-# Voice Emotion Detection API
+# Emotion Detection Model
 
 ## 📦 *Project Overview*
+We have created an Emotion Detector Machine Learning Model and uploaded it to *Hugging Face* .
 This project uses *FastAPI* to deploy a voice emotion detection model. The model is stored in a pickle file (best_rf_model.pkl) and is downloaded from *Hugging Face* if not found locally. It extracts audio features using *librosa* and predicts the mood.
 
 ## 🚀 *Setup Instructions*
@@ -62,14 +63,14 @@ bash
 pip install -r requirements.txt
 
 
-## 📤 *Running the API*
+## 📤 *Running the API locally*
 
 ### 4. *Run Locally*
 bash
 uvicorn main:app --host 0.0.0.0 --port 8000
 
 
-## 🔍 *Using the API*
+## 🔍 *Using the API locally*
 
 ### *Endpoint:*
 
@@ -86,16 +87,6 @@ json
 }
 
 
-## 📤 *Deployment (On Railway)*
-
-1. *Login to Railway:*
-   - Go to [Railway.app](https://railway.app/).
-2. *Create a New Project:*
-   - Connect your GitHub repository.
-3. *Add Environment Variables (if needed):*
-   - Example: PORT=8000
-4. *Deploy the Project.*
-
 ## ⚠ *Common Issues*
 
 - *Model Not Found:*
@@ -108,7 +99,7 @@ json
 # Emotion Detector API (Colon)
 
 ## Overview
-The *Colon Emotion Detector API* is a FastAPI-based service that processes .wav audio files and returns an emotion prediction. It accepts *POST requests* with multipart/form-data.
+The *Colon Emotion Detector Public API* is a FastAPI-based service that processes .wav audio files and returns an emotion prediction. It accepts *POST requests* with multipart/form-data.
 
 ## API Endpoint
 
