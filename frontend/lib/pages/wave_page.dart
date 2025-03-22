@@ -38,10 +38,12 @@ class _WavePageState extends State<WavePage> with TickerProviderStateMixin {
     await _flutterTts.setSpeechRate(0.5);
     await _flutterTts.setPitch(1.1);
     try {
-      await _flutterTts.setVoice({"name": "en-US-Wavenet-F", "locale": "en-US"});
+      await _flutterTts
+          .setVoice({"name": "en-US-Wavenet-F", "locale": "en-US"});
     } catch (e) {
       print("Error setting voice: $e");
-      await _flutterTts.setVoice({"name": "en-us-x-sfg-local", "locale": "en-US"});
+      await _flutterTts
+          .setVoice({"name": "en-us-x-sfg-local", "locale": "en-US"});
     }
   }
 
@@ -144,10 +146,12 @@ class _WavePageState extends State<WavePage> with TickerProviderStateMixin {
     await _flutterTts.setSpeechRate(0.5);
     await _flutterTts.setPitch(1.1);
     try {
-      await _flutterTts.setVoice({"name": "en-US-Wavenet-F", "locale": "en-US"});
+      await _flutterTts
+          .setVoice({"name": "en-US-Wavenet-F", "locale": "en-US"});
     } catch (e) {
       print("Error setting voice: $e");
-      await _flutterTts.setVoice({"name": "en-us-x-sfg-local", "locale": "en-US"});
+      await _flutterTts
+          .setVoice({"name": "en-us-x-sfg-local", "locale": "en-US"});
     }
     var result = await _flutterTts.speak(text);
     print("🛠 TTS Result: $result");
@@ -208,9 +212,11 @@ class _WavePageState extends State<WavePage> with TickerProviderStateMixin {
 
         // Filter out the mood-related text from the assistantResponse
         String filteredResponse = assistantResponse;
-        if (assistantResponse.contains("**Mood**:") || assistantResponse.contains("Mood:")) {
+        if (assistantResponse.contains("**Mood**:") ||
+            assistantResponse.contains("Mood:")) {
           // Remove the mood part (e.g., "- **Mood**: happy")
-          filteredResponse = assistantResponse.replaceAll(RegExp(r'-?\s*\*\*Mood\*\*:\s*[a-zA-Z]+\s*'), '');
+          filteredResponse = assistantResponse.replaceAll(
+              RegExp(r'-?\s*\*\*Mood\*\*:\s*[a-zA-Z]+\s*'), '');
           filteredResponse = filteredResponse.trim();
           print("✅ Filtered Response: $filteredResponse");
         }
@@ -229,7 +235,8 @@ class _WavePageState extends State<WavePage> with TickerProviderStateMixin {
   }
 
   void _toggleListening() async {
-    print("🎤 _toggleListening triggered! Current state: isListening=$isListening, isFirstRecordingDone=$isFirstRecordingDone");
+    print(
+        "🎤 _toggleListening triggered! Current state: isListening=$isListening, isFirstRecordingDone=$isFirstRecordingDone");
 
     var status = await Permission.microphone.status;
     if (!status.isGranted) {
